@@ -1,0 +1,28 @@
+{
+  "company": [
+    {
+      "id": 1,
+      "c_name": "Infosys",
+      "c_ceo": "Salil Parekh",
+      "c_founded": "1981",
+      "c_head": "Bengalore",
+      "c_empNo": "259616",
+      "c_contact": {
+        "number": "9876543210",
+        "email": "infosys@sys.com"
+      }
+    },
+    {
+      "id": 2,
+      "c_name": "TCS",
+      "c_ceo": "Rajesh Gopinathan",
+      "c_founded": "1968",
+      "c_head": "Mumbai",
+      "c_empNo": "528748",
+      "c_contact": {
+        "number": "3214569870",
+        "email": "tcs@consultancy.com"
+      }
+    }
+  ]
+}

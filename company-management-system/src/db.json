@@ -20,9 +20,17 @@
       "c_head": "Mumbai",
       "c_empNo": "528748",
       "c_contact": {
-        "number": "3214569870",
-        "email": "tcs@consultancy.com"
+        "number": "111111111",
+        "email": "Inquiry@cognizant.com"
       }
+    },
+    {
+      "id": 3,
+      "c_name": "Cognizant",
+      "c_ceo": "Brian Humphries",
+      "c_founded": "1994",
+      "c_head": "US",
+      "c_empNo": "330600"
     }
   ]
 }

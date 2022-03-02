@@ -16,7 +16,8 @@ const AddCompany = (props) => {
         c_ceo:props.company.c_ceo,
         c_founded: props.company.c_founded,
         c_head: props.company.c_head,
-        c_empNo: props.company.c_empNo
+        c_empNo: props.company.c_empNo,
+        c_contact:props.company.c_contact
     })
 
     const handleChange = (e) => {
@@ -91,11 +92,11 @@ const AddCompany = (props) => {
                     <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45  }} type="submit">
                         SUBMIT
                     </Button>
-                    <div>
+                    {/* <div>
                         <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45  }}>            
                             <Link to='/addcontact' style={{textDecoration: "none" , color: "white"}} state={{ comp:company,option:props.option }}>Add Contact</Link>
                         </Button>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>

@@ -72,6 +72,7 @@ const DisplayCompany = (props) => {
                             <StyledTableCell align="right">Employee Number</StyledTableCell>
                             <StyledTableCell align="right">Contact Number</StyledTableCell>
                             <StyledTableCell align="right">Email Id</StyledTableCell>
+                            <StyledTableCell align="right">Contact</StyledTableCell>
                             <StyledTableCell align="right">Delete</StyledTableCell>
                             <StyledTableCell align="right">Edit</StyledTableCell>
                         </TableRow>
@@ -89,6 +90,12 @@ const DisplayCompany = (props) => {
                             <StyledTableCell align="right">{com.c_empNo}</StyledTableCell>
                             <StyledTableCell align="right">{ com?.c_contact?.number ? com.c_contact.number :""}</StyledTableCell>
                             <StyledTableCell align="right">{ com?.c_contact?.email ? com.c_contact.email :""}</StyledTableCell>
+                            <StyledTableCell align="right">
+                                <Button variant="outlined" sx={{ width: 80, fontSize: 13}}>
+                                    <Link to='/addcontact' style={{textDecoration: "none", color: "#1174D7" }} state={{ comp:com,option:'edit' }}>Contact
+                                    </Link>
+                                </Button>
+                            </StyledTableCell>
                             <StyledTableCell align="right"><Button variant="outlined" sx={{ width: 70, fontSize: 13}} onClick={() => props.DeleteCompanyAction(com.id)}>Delete</Button></StyledTableCell>
                             <StyledTableCell align="right"><Button variant="outlined" sx={{ width: 70, fontSize: 13}}>
                                     <Link style={{ textDecoration: "none", color:"#008AD8" }} to='/edit' state={{company:com}}>Edit</Link></Button></StyledTableCell>

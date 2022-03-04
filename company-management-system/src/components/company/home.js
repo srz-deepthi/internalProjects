@@ -15,6 +15,7 @@ export function Home() {
     c_founded: undefined,
     c_head: '',
     c_empNo: undefined,
+    c_contact:[]
 }
 
   return <div>

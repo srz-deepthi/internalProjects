@@ -12,34 +12,35 @@ const AddContact=(props) =>{
     const option=useLocation().state.option
     console.log("option",option)
     const {comp} = useLocation().state
-    const [company,setContact]=useState({
+
+    const [contact, setContacts] = useState({
+        number: undefined ,
+        email: ''
+    })
+    const [company,setCompanyContact]=useState({
                 id :comp.id, 
                 c_name:comp.c_name,
                 c_ceo:comp.c_ceo,
                 c_founded: comp.c_founded,
                 c_head: comp.c_head,
                 c_empNo: comp.c_empNo,
-                c_contact: {
-                        number:undefined,
-                        email:""
-                    }
+                c_contact:comp.c_contact
+
     })
 
     const handleC=(e)=>{
-        const name=e.target.name
-        console.log(name);
-        setContact(
+        const name = e.target.name
+        setContacts(
             {
-                ...company,
-                c_contact: {
-                    ...company.c_contact,
-                    [name]:e.target.value,
-                }
-            }
+                ...contact,
+                [name]: e.target.value
+            }   
         )
     }
     const handleSubmit=(e) =>{
-         e.preventDefault() 
+
+         e.preventDefault()
+         company.c_contact.push(contact)
          if(option === 'add'){
             props.AddCompanyAction(company)
             navigate('/view');
@@ -65,7 +66,7 @@ const AddContact=(props) =>{
                                     name="number"
                                     type="number"
                                     label="Contact Number"
-                                    value={company.c_contact.number}
+                                    value={contact.number}
                                     onChange={handleC}
                                     required
                             />
@@ -81,7 +82,7 @@ const AddContact=(props) =>{
                                         name="email"
                                         type="email"
                                         label="Email"
-                                        value={company.c_contact.email}
+                                        value={contact.email}
                                         onChange={handleC}
                                         required
                             />
@@ -91,7 +92,7 @@ const AddContact=(props) =>{
                     <div className="container-fluid">
                         <div className="form_group row" id="addB">
                             <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45}} type='submit' >
-                                { option.toUpperCase() }
+                                ADD
                             </Button>
                         </div>
                     </div> 

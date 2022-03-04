@@ -6,31 +6,39 @@
       "c_ceo": "Salil Parekh",
       "c_founded": "1981",
       "c_head": "Bengalore",
-      "c_empNo": "259616",
-      "c_contact": {
-        "number": "9876543210",
-        "email": "infosys@sys.com"
-      }
+      "c_empNo": "252000",
+      "c_contact": [
+        {
+          "number": "912022932800",
+          "email": "askus@infosys.co"
+        },
+        {
+          "email": "info@infosys.co",
+          "number": "1800280027"
+        },
+        {
+          "number": "",
+          "email": ""
+        }
+      ]
     },
     {
       "id": 2,
-      "c_name": "TCS",
-      "c_ceo": "Rajesh Gopinathan",
-      "c_founded": "1968",
-      "c_head": "Mumbai",
-      "c_empNo": "528748",
-      "c_contact": {
-        "number": "111111111",
-        "email": "Inquiry@cognizant.com"
-      }
-    },
-    {
-      "id": 3,
-      "c_name": "Cognizant",
-      "c_ceo": "Brian Humphries",
-      "c_founded": "1994",
-      "c_head": "US",
-      "c_empNo": "330600"
+      "c_name": "Knr technologies",
+      "c_ceo": "Ratheesh",
+      "c_founded": "2019",
+      "c_head": "Iritty",
+      "c_empNo": "6",
+      "c_contact": [
+        {
+          "number": "6238897620",
+          "email": "knr@Whgh.com"
+        },
+        {
+          "number": "1546546465",
+          "email": "Inquiry@cognizant.com"
+        }
+      ]
     }
   ]
 }

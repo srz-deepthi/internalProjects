@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router'
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import AddContact from "../contact/AddContact";
 
 const AddCompany = (props) => {
 
@@ -30,6 +31,19 @@ const AddCompany = (props) => {
         )
     }
 
+    const handleC = index => (e)  => {
+        const name = e.target.name 
+
+        let newContact = [...company.c_contact];
+        newContact[index][name] =  e.target.value
+
+        setCompany({
+            ...company,
+            c_contact: newContact
+        })
+        console.log("contact",company)     
+    }
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("add form.. ",company)
@@ -89,6 +103,26 @@ const AddCompany = (props) => {
                             onChange={handleChange}
                             label="Total Employees"
                         /><br/>
+                        {company?.c_contact ?
+                            company.c_contact.map((cnt,index) => ( <li key={index} style={{listStyleType: "none"}}> 
+                            <TextField sx={{ m: 3, width: 400 }}
+                                type="number"
+                                name="number"
+                                key={index}
+                                value={cnt.number}
+                                label={"Contact "+(index+1)}
+                                onChange={handleC(index)}
+                            /> <br/> </li> ) ) : " " }
+                        {company?.c_contact ?
+                            company.c_contact.map((cnt,index) => ( <li key={index} style={{listStyleType: "none"}}> 
+                            <TextField sx={{ m: 3, width: 400 }}
+                                type="email"
+                                name="email"
+                                key={index}
+                                value={cnt.email}
+                                label={"Email "+(index+1)}
+                                onChange={handleC(index)}
+                            /> <br/> </li> ) ) : " " }
                     <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45  }} type="submit">
                         SUBMIT
                     </Button>

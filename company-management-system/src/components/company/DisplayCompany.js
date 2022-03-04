@@ -46,6 +46,13 @@ const DisplayCompany = (props) => {
 
         props.GetCompanyAction()
         setFlag(true) 
+
+        props.company.map( (com) =>(
+            com.c_contact = com.c_contact.filter( i => 1)
+        ))
+        alert("hhh")
+        console.log("contact",props.company[0].c_contact)
+
         //Runs only on the first render
       },[]);
 
@@ -58,6 +65,7 @@ const DisplayCompany = (props) => {
     return (
         // <div>display..<br />
         //     <button onClick={handleF}>View..</button><hr/>
+        
         <div>
             {( check === true && props.comp.length > 0 )?<>
             <TableContainer component={Paper}>
@@ -88,11 +96,17 @@ const DisplayCompany = (props) => {
                             <StyledTableCell align="right">{com.c_founded}</StyledTableCell>
                             <StyledTableCell align="right">{com.c_head}</StyledTableCell>
                             <StyledTableCell align="right">{com.c_empNo}</StyledTableCell>
-                            <StyledTableCell align="right">{ com?.c_contact?.number ? com.c_contact.number :""}</StyledTableCell>
-                            <StyledTableCell align="right">{ com?.c_contact?.email ? com.c_contact.email :""}</StyledTableCell>
+                            
+                            <StyledTableCell align="right">
+                                {com?.c_contact ? com.c_contact.map((cnt) => <StyledTableRow>{cnt.number}</StyledTableRow>) : "" }
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                                {com?.c_contact ? com.c_contact.map((cnt) => <StyledTableRow>{cnt.email}</StyledTableRow>) : ""}
+                            </StyledTableCell>
+                            
                             <StyledTableCell align="right">
                                 <Button variant="outlined" sx={{ width: 80, fontSize: 13}}>
-                                    <Link to='/addcontact' style={{textDecoration: "none", color: "#1174D7" }} state={{ comp:com,option:'edit' }}>Contact
+                                    <Link to='/addcontact' style={{textDecoration: "none", color: "#1174D7" }} state={{ comp:com,option:'edit' }}>Add Contact
                                     </Link>
                                 </Button>
                             </StyledTableCell>

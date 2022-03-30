@@ -2,10 +2,11 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { AddCompanyAction, UpdateCompanyAction} from "../../companyRedux/companyAction";
 import { useNavigate } from 'react-router'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import AddContact from "../contact/AddContact";
+// import AddContact from "../contact/AddContact";
+// import { useForm } from "react-hook-form";
 
 const AddCompany = (props) => {
 
@@ -19,7 +20,9 @@ const AddCompany = (props) => {
         c_head: props.company.c_head,
         c_empNo: props.company.c_empNo,
         c_contact:props.company.c_contact
-    })
+    })    
+    
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -29,6 +32,14 @@ const AddCompany = (props) => {
                     [name]: e.target.value
                 }
         )
+    }
+
+    const validateInfo = (company) => {
+        
+        // let errors = {};      
+        if (!company.c_name.trim()) {
+          errors.c_name = 'Username required';
+        }
     }
 
     const handleC = index => (e)  => {
@@ -44,14 +55,24 @@ const AddCompany = (props) => {
         console.log("contact",company)     
     }
     
+    const handleCancel = () => {
+        navigate('/view');
+    }
+
+    
     const handleSubmit = (event) => {
+        
         event.preventDefault();
+        setErrors(validateInfo(company));
+
         console.log("add form.. ",company)
         if(props.option === 'add'){
             props.AddCompanyAction(company)
             navigate('/view');
         }
         else {
+            let noEmptyContact = company.c_contact.filter(item => (item.number || item.email))
+            company.c_contact=noEmptyContact
             props.UpdateCompanyAction(company)
             navigate('/view');
         }
@@ -61,7 +82,8 @@ const AddCompany = (props) => {
         <div>
 
             <div>
-                <form onSubmit={handleSubmit}>                    
+                <form onSubmit={handleSubmit}>   
+
                         <TextField
                                     sx={{ m: 3, width: 400 }}
                                     // id="outlined-name"
@@ -70,7 +92,10 @@ const AddCompany = (props) => {
                                     label="Company Name"
                                     value={company.c_name}
                                     onChange={handleChange}
-                            /><br/>                    
+                            />
+                        {errors.c_name && <p>{errors.c_name}</p>}
+                        <br/>  
+
                         <TextField
                             sx={{ m: 3, width: 400 }}
                             type="text"
@@ -79,6 +104,7 @@ const AddCompany = (props) => {
                             label="CEO"
                             onChange={handleChange}
                         /><br/>
+
                         <TextField
                             sx={{ m: 3, width: 400 }}
                             type="number"
@@ -87,6 +113,7 @@ const AddCompany = (props) => {
                             label="Founded"
                             onChange={handleChange}
                         /><br/>
+
                         <TextField
                             sx={{ m: 3, width: 400 }}
                             type="text"
@@ -95,6 +122,7 @@ const AddCompany = (props) => {
                             onChange={handleChange}
                             label="Head Quaters"
                         /><br/>
+
                         <TextField
                             sx={{ m: 3, width: 400 }}
                             type="number"
@@ -103,8 +131,9 @@ const AddCompany = (props) => {
                             onChange={handleChange}
                             label="Total Employees"
                         /><br/>
+
                         {company?.c_contact ?
-                            company.c_contact.map((cnt,index) => ( <li key={index} style={{listStyleType: "none"}}> 
+                            company.c_contact.map((cnt,index) => ( <><li key={index} style={{listStyleType: "none"}}> 
                             <TextField sx={{ m: 3, width: 400 }}
                                 type="number"
                                 name="number"
@@ -112,8 +141,18 @@ const AddCompany = (props) => {
                                 value={cnt.number}
                                 label={"Contact "+(index+1)}
                                 onChange={handleC(index)}
-                            /> <br/> </li> ) ) : " " }
-                        {company?.c_contact ?
+                            /> <br/> </li> 
+
+                            <li key={index} style={{listStyleType: "none"}}> 
+                            <TextField sx={{ m: 3, width: 400 }}
+                                type="email"
+                                name="email"
+                                key={index}
+                                value={cnt.email}
+                                label={"Email "+(index+1)}
+                                onChange={handleC(index)}
+                            /> <br/> </li> </> ) ) : " " }
+                        {/* {company?.c_contact ?
                             company.c_contact.map((cnt,index) => ( <li key={index} style={{listStyleType: "none"}}> 
                             <TextField sx={{ m: 3, width: 400 }}
                                 type="email"
@@ -122,7 +161,12 @@ const AddCompany = (props) => {
                                 value={cnt.email}
                                 label={"Email "+(index+1)}
                                 onChange={handleC(index)}
-                            /> <br/> </li> ) ) : " " }
+                            /> <br/> </li> ) ) : " " } */}
+
+                    <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45  }} onClick={handleCancel}>
+                        CANCEL
+                    </Button>
+
                     <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45  }} type="submit">
                         SUBMIT
                     </Button>

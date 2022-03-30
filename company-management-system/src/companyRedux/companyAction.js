@@ -13,6 +13,12 @@ export const GetCompanyAction = () => {
 }
 
 export const UpdateCompanyAction = (company) => {
+    
+    // let noEmptyContact = company.c_contact.filter(item => (item.number || item.email))
+    // company.c_contact=noEmptyContact
+
+    // console.log("remove empty con",noEmptyContact)
+    
     return {
         type: "UPDATE_COMPANY",
         payload : company 

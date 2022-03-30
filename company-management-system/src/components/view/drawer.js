@@ -24,7 +24,8 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import FaceIcon from '@mui/icons-material/Face';
 import Home from '../company/home'
 import {  Link } from 'react-router-dom'
-import Fab from '@mui/material/Fab';
+import PhoneIcon from '@mui/icons-material/Phone';
+import { Button } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -97,14 +98,15 @@ export default function DrawerLeft() {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: 38 }}/>
           </IconButton>          
             <Link to='/view' style={{ textDecoration: 'none'}}>
-              <HomeIcon fontSize= "large" style={{ color: 'white'}}/>
+              <HomeIcon style={{ color: 'white', fontSize: 38 }}/>
             </Link> 
             <Link to='/' style={{ textDecoration: 'none', paddingLeft:15 }}>
-              <AddIcon fontSize= "large" style={{ color: 'white'}}/>
-            </Link>                   
+              <AddIcon style={{ color: 'white', fontSize: 40 }}/>
+            </Link>  
+            <PhoneIcon style={{ marginLeft: "auto", color: 'white', fontSize: 33 }}/>
         </Toolbar>
       </AppBar>
       <Drawer

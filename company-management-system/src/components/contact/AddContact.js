@@ -37,6 +37,11 @@ const AddContact=(props) =>{
             }   
         )
     }
+
+    const handleCancel = () => {
+        navigate('/view');
+    }
+    
     const handleSubmit=(e) =>{
 
          e.preventDefault()
@@ -91,6 +96,9 @@ const AddContact=(props) =>{
                     </div>   
                     <div className="container-fluid">
                         <div className="form_group row" id="addB">
+                            <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45}} onClick={handleCancel} >
+                                CANCEL
+                            </Button>
                             <Button variant="contained"  sx={{ m: 3 , width: 150, height: 45}} type='submit' >
                                 ADD
                             </Button>

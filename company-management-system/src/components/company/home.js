@@ -4,6 +4,9 @@ import AddCompany from './AddCompany'
 import DisplayCompany from "./DisplayCompany"
 import UpdateCompany from "./UpdateCompany"
 import AddContact from '../contact/AddContact'
+import Typography from '@mui/material/Typography';
+import { fontFamily } from '@mui/system';
+
 //--------------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------------
@@ -30,6 +33,7 @@ export function Home() {
                 <h3>Home Page ......</h3>
             </div> */}
         <div>
+        <Typography variant="h4" style={{ fontFamily : "monospace" , paddingBottom : 6 , color: "#1174D7"}}>COMPANY MANAGEMENT SYSTEM</Typography>
           <Routes>
             <Route path='/' element={<AddCompany company ={company} option='add' />} />
             <Route path='/view' element={<DisplayCompany />} />

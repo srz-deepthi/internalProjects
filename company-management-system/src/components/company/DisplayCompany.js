@@ -12,6 +12,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect} from 'react'
 import Button from "@mui/material/Button";
+import HourglassDisabledIcon from '@mui/icons-material/HourglassDisabled';
+import ContactPageRoundedIcon from '@mui/icons-material/ContactPageRounded';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -47,12 +51,6 @@ const DisplayCompany = (props) => {
         props.GetCompanyAction()
         setFlag(true) 
 
-        props.company.map( (com) =>(
-            com.c_contact = com.c_contact.filter( i => 1)
-        ))
-        alert("hhh")
-        console.log("contact",props.company[0].c_contact)
-
         //Runs only on the first render
       },[]);
 
@@ -62,6 +60,7 @@ const DisplayCompany = (props) => {
         setFlag(true)
         props.GetCompanyAction()
     }
+
     return (
         // <div>display..<br />
         //     <button onClick={handleF}>View..</button><hr/>
@@ -98,26 +97,38 @@ const DisplayCompany = (props) => {
                             <StyledTableCell align="right">{com.c_empNo}</StyledTableCell>
                             
                             <StyledTableCell align="right">
-                                {com?.c_contact ? com.c_contact.map((cnt) => <StyledTableRow>{cnt.number}</StyledTableRow>) : "" }
+                                {com?.c_contact ? com.c_contact.map((cnt) => <StyledTableRow style={{ }}>{cnt.number}</StyledTableRow>) : "" }
                             </StyledTableCell>
                             <StyledTableCell align="right">
                                 {com?.c_contact ? com.c_contact.map((cnt) => <StyledTableRow>{cnt.email}</StyledTableRow>) : ""}
                             </StyledTableCell>
                             
                             <StyledTableCell align="right">
-                                <Button variant="outlined" sx={{ width: 80, fontSize: 13}}>
-                                    <Link to='/addcontact' style={{textDecoration: "none", color: "#1174D7" }} state={{ comp:com,option:'edit' }}>Add Contact
+                                {/* <Button variant="outlined" sx={{ width: 80, fontSize: 13}}> */}
+                                    <Link to='/addcontact' style={{textDecoration: "none", color: "#1174D7" }} state={{ comp:com,option:'edit' }}>
+                                    <ContactPageRoundedIcon style={{ fontSize:30}}/>
                                     </Link>
-                                </Button>
+                                {/* </Button> */}
                             </StyledTableCell>
-                            <StyledTableCell align="right"><Button variant="outlined" sx={{ width: 70, fontSize: 13}} onClick={() => props.DeleteCompanyAction(com.id)}>Delete</Button></StyledTableCell>
-                            <StyledTableCell align="right"><Button variant="outlined" sx={{ width: 70, fontSize: 13}}>
-                                    <Link style={{ textDecoration: "none", color:"#008AD8" }} to='/edit' state={{company:com}}>Edit</Link></Button></StyledTableCell>
+                            <StyledTableCell align="right">
+                                {/* <Button variant="outlined" sx={{ width: 70, fontSize: 13}} onClick={() => props.DeleteCompanyAction(com.id)}> */}
+                                    {/* Delete */}
+                                    <RemoveCircleIcon style={{ fontSize:30 ,color: "#1174D7"}} onClick={() => props.DeleteCompanyAction(com.id)}/>
+                                    {/* <DeleteForeverIcon style={{ fontSize:30 , color: "#1174D7" }} onClick={() => props.DeleteCompanyAction(com.id)}/> */}
+                                {/* </Button> */}
+                            </StyledTableCell>
+                            <StyledTableCell align="right">
+                                {/* <Button variant="outlined" sx={{ width: 70, fontSize: 13}}> */}
+                                    <Link style={{ textDecoration: "none", color:"#008AD8" }} to='/edit' state={{company:com}}>
+                                        <ModeEditIcon style={{ fontSize:30}}/>
+                                    </Link>
+                                {/* </Button> */}
+                            </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer></>:"No Data"}
+            </TableContainer></> : <HourglassDisabledIcon/> }
         </div>
     )
 }
